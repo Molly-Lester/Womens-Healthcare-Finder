@@ -1,6 +1,5 @@
 const db = require("../db/database");
 const getCoordinates = require("../utils/geocode");
-const getDistanceMiles = require("../utils/distance");
 const mockData = require("../data/mockData");
 
 const useMock = process.env.MOCK === "true";
