@@ -52,15 +52,13 @@ export default function Results({ searchQuery, hasResults, onNewSearch }) {
                 <div className={classes.empty}>
                     <Text>We couldn't find any providers matching your search.</Text>
                     <Text>Try adjusting your filters or searching for something else.</Text>
+                    <div className={classes.newSearchContainer}>
+                        <button className={classes.newSearchButton} onClick={onNewSearch}>
+                            New Search
+                        </button>
+                    </div>
                 </div>
             )}
-
-            {/* New Search Button */}
-            <div className={classes.newSearchContainer}>
-                <button className={classes.newSearchButton} onClick={onNewSearch}>
-                    New Search
-                </button>
-            </div>
         </>
     );
 }

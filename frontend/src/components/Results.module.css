@@ -39,10 +39,8 @@
   margin: 8px 0;
 }
 
-/* New Search Button */
-.newSearchContainer {
-  margin-top: 32px;
-  text-align: center;
+.empty .newSearchContainer {
+  margin-top: 20px;
 }
 
 .newSearchButton {
@@ -59,4 +57,10 @@
 
 .newSearchButton:hover {
   background: #1f2937;
+}
+
+/* New Search Button */
+.newSearchContainer {
+  margin-top: 32px;
+  text-align: center;
 }

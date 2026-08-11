@@ -21,6 +21,28 @@
   gap: 12px;
 }
 
+/* New Search Button */
+.newSearchContainer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.newSearchButton {
+  padding: 12px 24px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.newSearchButton:hover {
+  background: #1f2937;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .resultsLayout {

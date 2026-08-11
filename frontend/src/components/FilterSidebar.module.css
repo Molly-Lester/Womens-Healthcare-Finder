@@ -50,18 +50,19 @@
 }
 
 .applyButton {
-  background: #16a34a;
-  color: white;
+  border: 1px solid #228be6;
+  background-color: #f1f9ff;
+  color: #495057;
   font-size: 14px;
   font-weight: 500;
   height: 40px;
   border-radius: 8px;
-  border: none;
   transition: background 0.2s ease;
 }
 
 .applyButton:hover {
-  background: #15803d;
+  background-color: #f8fbff;
+  color: #495057;
 }
 
 .resetButton {
@@ -75,6 +76,5 @@
 }
 
 .resetButton:hover {
-  background: #f9fafb;
-  border-color: #b0b5be;
+  background-color: #f8fbff;
 }

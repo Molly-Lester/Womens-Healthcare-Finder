@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearResults, resetFilters, setFilters, setSearchQuery } from "../features/search/searchSlice";
+import { clearResults, resetFilters, setFilters, setSearchQuery, setLoading } from "../features/search/searchSlice";
 import FilterSidebar from "../components/FilterSidebar";
 import ResultCard from "../components/ResultCard";
 import Results from "../components/Results";
@@ -33,12 +33,23 @@ export default function ResultsPage() {
         const { postcode, category, providerType } = searchQuery;
         const currentDistance = filters.distance;
 
+        if (!postcode || !category) {
+            showNotification({
+                title: "Missing information",
+                message: "Please perform a search first before applying filters.",
+                color: "orange",
+            });
+            return;
+        }
+
         const params = new URLSearchParams({
             postcode,
             radius: currentDistance,
             service_id: category,
             provider_type: providerType,
         });
+
+        dispatch(setLoading(true));
 
         try {
             const response = await fetch(
@@ -49,7 +60,7 @@ export default function ResultsPage() {
 
             if (!response.ok) {
                 showNotification({
-                    title: "Network error",
+                    title: "Search error",
                     message: data.error || "Something went wrong",
                     color: "red",
                 });
@@ -57,12 +68,15 @@ export default function ResultsPage() {
             }
 
             dispatch(setResults(data));
+            dispatch(setSearchQuery({ distance: currentDistance }));
         } catch (err) {
             showNotification({
                 title: "Network error",
                 message: "We're having trouble connecting to the server. Please check your connection and try again.",
                 color: "red",
             });
+        } finally {
+            dispatch(setLoading(false));
         }
     };
 
@@ -94,6 +108,13 @@ export default function ResultsPage() {
                                 onViewDetails={() => console.log("View details for", provider.provider_id)}
                             />
                         ))}
+
+                        {/* New Search Button — below all result cards */}
+                        <div className={classes.newSearchContainer}>
+                            <button className={classes.newSearchButton} onClick={handleNewSearch}>
+                                New Search
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
