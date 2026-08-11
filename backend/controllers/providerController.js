@@ -1,11 +1,18 @@
 const db = require("../db/database");
 const getCoordinates = require("../utils/geocode");
 const getDistanceMiles = require("../utils/distance");
+const mockData = require("../data/mockData");
+
+const useMock = process.env.MOCK === "true";
 
 // Get all providers
 // Used for testing the database connection
 
 async function getProviders(req, res) {
+
+    if (useMock) {
+        return res.json(mockData.getProviders());
+    }
 
     try {
 
@@ -54,6 +61,11 @@ async function geocodePostcode(req, res) {
 
     }
 
+    if (useMock) {
+        const coordinates = mockData.mockGeocode(postcode);
+        return res.json(coordinates);
+    }
+
     try {
 
         const coordinates = await getCoordinates(postcode);
@@ -91,6 +103,11 @@ async function getNearbyProviders(req, res) {
             error: "postcode, radius and service_id are required"
         });
 
+    }
+
+    if (useMock) {
+        const nearbyProviders = mockData.getNearbyProviders(req.query);
+        return res.json(nearbyProviders);
     }
 
     try {

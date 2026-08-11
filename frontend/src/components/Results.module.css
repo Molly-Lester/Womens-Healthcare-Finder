@@ -1,0 +1,62 @@
+/* Search Summary */
+.searchSummary {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.summaryRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.summaryLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.summaryValue {
+  font-size: 14px;
+  color: #111827;
+  font-weight: 500;
+}
+
+/* Empty State */
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.empty p {
+  margin: 8px 0;
+}
+
+/* New Search Button */
+.newSearchContainer {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.newSearchButton {
+  padding: 12px 24px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.newSearchButton:hover {
+  background: #1f2937;
+}
