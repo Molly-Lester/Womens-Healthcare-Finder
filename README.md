@@ -135,9 +135,9 @@ This project also uses the PostGIS extension for PostgreSQL to support location-
 Clone the repository:
 
 ```bash
-git clone https://github.com/Molly-Lester/Womens-Health-Provider-Finder.git
+git clone https://github.com/Molly-Lester/Womens-Healthcare-Finder.git
 
-cd Womens-Health-Provider-Finder
+cd Womens-Healthcare-Finder
 ```
 
 ---
@@ -352,8 +352,6 @@ This project was originally created as part of the Code First Girls Full-Stack D
 * Saamiya Kudah
 * Tapiwa Chibagidi
 * Tia Benvenuti
-
-Since completing the course, I've continued developing the project independently by improving the application's architecture, expanding the provider dataset, migrating the database from MySQL to PostgreSQL with PostGIS, introducing Redux for state management, and continuing to refine the user experience and overall maintainability.
 
 ### Team Contributions
 
