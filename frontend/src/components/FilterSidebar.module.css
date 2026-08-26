@@ -1,0 +1,80 @@
+.sidebar {
+  width: 280px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #d6d9df;
+  border-radius: 14px;
+  height: fit-content;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2b2b2b;
+  margin-bottom: 16px;
+}
+
+.divider {
+  margin: 16px 0;
+  border-color: #d6d9df;
+}
+
+.filterGroup {
+  margin-bottom: 16px;
+}
+
+.selectInput {
+  font-size: 14px;
+  border-color: #d6d9df;
+  border-radius: 8px;
+  height: 40px;
+}
+
+.option {
+  font-size: 14px;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxInput {
+  border-color: #d6d9df;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+  color: #495057;
+}
+
+.applyButton {
+  border: 1px solid #228be6;
+  background-color: #f1f9ff;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.applyButton:hover {
+  background-color: #f8fbff;
+  color: #495057;
+}
+
+.resetButton {
+  margin-top: 8px;
+  border-color: #d6d9df;
+  color: #495057;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.resetButton:hover {
+  background-color: #f8fbff;
+}

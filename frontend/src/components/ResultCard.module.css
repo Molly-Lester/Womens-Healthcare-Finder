@@ -1,0 +1,111 @@
+/* Clinic Card */
+.clinicCard {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 16px 20px;
+  transition: box-shadow 0.2s ease;
+}
+
+.clinicCard:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Card Header */
+.cardHeader {
+  margin-bottom: 12px;
+}
+
+.cardInfo {
+  padding-right: 16px;
+}
+
+.clinicName {
+  font-size: 16px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+/* Badges */
+.badges {
+  display: flex;
+  gap: 6px;
+}
+
+.badge {
+  padding: 3px 8px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+/* Info Boxes */
+.infoBoxes {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.infoBox {
+  flex: 1;
+  padding: 10px 14px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.infoLabel {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.infoValue {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Contact Info */
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.contactText {
+  display: block;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rating {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.viewDetailsButton {
+  padding: 8px 20px;
+  background: #111827;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.viewDetailsButton:hover {
+  background: #1f2937;
+}
