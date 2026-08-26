@@ -1,4 +1,4 @@
-CREATE TABLE provider_sources (
+CREATE TABLE _sources (
 
     source_id SERIAL PRIMARY KEY,
 
@@ -8,25 +8,25 @@ CREATE TABLE provider_sources (
 
 );
 
--- Stores where each provider record originated (manual, dataset or provider submission)
+-- Stores where each  record originated (manual, dataset or  submission)
 
-INSERT INTO provider_sources
+INSERT INTO _sources
 (source_name, source_type)
 
 VALUES
 ('Admin Added','Manual'),
 ('HFEA Import','Dataset'),
-('Provider Submission','Form');
+(' Submission','Form');
 
--- Stores the core details for each healthcare provider
+-- Stores the core details for each healthcare 
 
-CREATE TABLE providers (
+CREATE TABLE s (
 
-    provider_id SERIAL PRIMARY KEY,
+    _id SERIAL PRIMARY KEY,
 
-    provider_name VARCHAR(255) NOT NULL,
+    _name VARCHAR(255) NOT NULL,
 
-    provider_type VARCHAR(100) NOT NULL,
+    _type VARCHAR(100) NOT NULL,
 
     website VARCHAR(255),
 
@@ -44,17 +44,17 @@ CREATE TABLE providers (
 
 
     FOREIGN KEY (source_id)
-        REFERENCES provider_sources(source_id)
+        REFERENCES _sources(source_id)
 
 );
 
--- Stores the physical location of each provider for postcode and distance searches
+-- Stores the physical location of each  for postcode and distance searches
 
 CREATE TABLE locations (
 
     location_id SERIAL PRIMARY KEY,
 
-    provider_id INT NOT NULL,
+    _id INT NOT NULL,
 
     address_line VARCHAR(255),
 
@@ -69,8 +69,8 @@ CREATE TABLE locations (
     coordinates GEOGRAPHY(Point,4326),
 
 
-    FOREIGN KEY (provider_id)
-        REFERENCES providers(provider_id)
+    FOREIGN KEY (_id)
+        REFERENCES s(_id)
         ON DELETE CASCADE
 
 );
@@ -98,20 +98,20 @@ VALUES
 ('Pregnancy and Maternity'),
 ('Women''s General Health');
 
--- Links providers to the services they offer (many-to-many relationship)
+-- Links s to the services they offer (many-to-many relationship)
 
-CREATE TABLE provider_services (
+CREATE TABLE _services (
 
-    provider_id INT NOT NULL,
+    _id INT NOT NULL,
 
     service_id INT NOT NULL,
 
 
-    PRIMARY KEY(provider_id, service_id),
+    PRIMARY KEY(_id, service_id),
 
 
-    FOREIGN KEY(provider_id)
-        REFERENCES providers(provider_id)
+    FOREIGN KEY(_id)
+        REFERENCES s(_id)
         ON DELETE CASCADE,
 
 
@@ -122,10 +122,10 @@ CREATE TABLE provider_services (
 );
 
 
-INSERT INTO providers
+INSERT INTO s
 (
-    provider_name,
-    provider_type,
+    _name,
+    _type,
     website,
     phone_number,
     source_id,
@@ -275,7 +275,7 @@ TRUE);
 
 INSERT INTO locations
 (
-provider_id,
+_id,
 address_line,
 city,
 postcode,
@@ -325,8 +325,8 @@ VALUES
 
 (20,'OneWelbeck, 1 Welbeck Street','London','W1G 0AR',51.516185,-0.148094,ST_SetSRID(ST_Point(-0.148094,51.516185),4326));
 
-INSERT INTO provider_services
-(provider_id, service_id)
+INSERT INTO _services
+(_id, service_id)
 VALUES
 
 -- Women's General Health
@@ -386,10 +386,10 @@ VALUES
 (20,2);
 
 
-INSERT INTO providers
+INSERT INTO s
 (
-    provider_name,
-    provider_type,
+    _name,
+    _type,
     website,
     phone_number,
     email,
@@ -640,7 +640,7 @@ TRUE);
 
 INSERT INTO locations
 (
-    provider_id,
+    _id,
     address_line,
     city,
     postcode,
@@ -710,9 +710,9 @@ VALUES
 
 (50,'Neath Port Talbot Hospital, Baglan Way','Port Talbot','SA12 7BX',51.599217,-3.800367,ST_SetSRID(ST_Point(-3.800367,51.599217),4326));
 
-INSERT INTO provider_services
+INSERT INTO _services
 (
-    provider_id,
+    _id,
     service_id
 )
 VALUES

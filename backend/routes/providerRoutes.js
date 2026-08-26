@@ -2,13 +2,13 @@ const express = require("express");
 
 const {
     geocodePostcode,
-    getNearbyProviders
+    getNearbys
 } = require("../controllers/providerController");
 
 const router = express.Router();
 
-router.get('/geocode', geocodePostcode);
-router.get('/providers/nearby', getNearbyProviders);
+router.get('/providers/geocode', geocodePostcode);
+router.get('/providers/nearby', getNearbys);
 
 module.exports = router;
 

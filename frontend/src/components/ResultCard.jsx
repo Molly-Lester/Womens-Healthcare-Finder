@@ -64,9 +64,6 @@ export default function ResultCard({ provider, onViewDetails }) {
 
             {/* Footer */}
             <div className={classes.cardFooter}>
-                <Text className={classes.rating}>
-                    ★ 4.8 (89 reviews)
-                </Text>
                 <button className={classes.viewDetailsButton} onClick={onViewDetails}>
                     View Details
                 </button>
