@@ -28,15 +28,15 @@ async function geocodePostcode(req, res) {
 }
 
 
-// Find providers near a user's postcode.
-// Filters by service (fertility, menopause etc), provider type (NHS/Private/All) and search radius.
+// Find s near a user's postcode.
+// Filters by service (fertility, menopause etc),  type (NHS/Private/All) and search radius.
 
-async function getNearbyProviders(req, res) {
+async function getNearbys(req, res) {
     const {
         postcode,
         radius,
         service_id,
-        provider_type
+        _type
     } = req.query;
 
     // Check that all required search information has been provided.
@@ -71,9 +71,9 @@ async function getNearbyProviders(req, res) {
                 ? null
                 : Number(radius) * 1609.344;
 
-        // Find providers that offer the selected service.
+        // Find s that offer the selected service.
         // PostGIS calculates the distance between the user's searched location
-        // and each provider's stored location.
+        // and each 's stored location.
         // ST_Distance returns metres, so divide by 1609.344 to return miles.
         let query = `
             SELECT
@@ -121,16 +121,16 @@ async function getNearbyProviders(req, res) {
             userLat
         ];
 
-        // Only add the provider type filter if the user selected NHS or Private.
-        if (provider_type && provider_type !== "all") {
-            queryValues.push(provider_type);
+        // Only add the type filter if the user selected NHS or Private.
+        if (_type && _type !== "all") {
+            queryValues.push(_type);
 
             // Use the current number of query values to create
             // the correct SQL placeholder automatically.
-            const providerTypeParameter = `$${queryValues.length}`;
+            const TypeParameter = `$${queryValues.length}`;
 
             query += `
-                AND p.provider_type = ${providerTypeParameter}
+                AND p._type = ${TypeParameter}
             `;
         }
 
@@ -154,7 +154,7 @@ async function getNearbyProviders(req, res) {
             `;
         }
 
-        // Return the closest providers first.
+        // Return the closest s first.
         query += `
             ORDER BY distance ASC
         `;
@@ -162,7 +162,7 @@ async function getNearbyProviders(req, res) {
         // Run the completed PostGIS query.
         const result = await db.query(query, queryValues);
 
-        // Return the matching providers to the frontend.
+        // Return the matching s to the frontend.
         res.json(result.rows);
 
     } catch (error) {
@@ -170,7 +170,7 @@ async function getNearbyProviders(req, res) {
 
         // This catches database or PostGIS errors.
         res.status(500).json({
-            error: "Could not retrieve nearby providers"
+            error: "Could not retrieve nearby s"
         });
     }
 }
@@ -178,5 +178,5 @@ async function getNearbyProviders(req, res) {
 
 module.exports = {
     geocodePostcode,
-    getNearbyProviders
+    getNearbys
 };

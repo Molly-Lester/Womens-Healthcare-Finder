@@ -72,8 +72,8 @@
 .contactInfo {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 12px;
+  gap: 8px;
+  margin-top: 10px;
   font-size: 14px;
   color: #6b7280;
 }
@@ -85,17 +85,12 @@
 /* Card Footer */
 .cardFooter {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.rating {
-  font-size: 13px;
-  color: #9ca3af;
-}
-
 .viewDetailsButton {
-  padding: 8px 20px;
+  padding: 8px 10px;
   background: #111827;
   color: #ffffff;
   border: none;
