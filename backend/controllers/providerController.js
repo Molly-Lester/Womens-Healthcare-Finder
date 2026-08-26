@@ -1,52 +1,5 @@
 const db = require("../db/database");
 const getCoordinates = require("../utils/geocode");
-const mockData = require("../data/mockData");
-
-const useMock = process.env.MOCK === "true";
-
-// Get all providers
-// Used for testing the database connection
-
-async function getProviders(req, res) {
-
-    if (useMock) {
-        return res.json(mockData.getProviders());
-    }
-
-    try {
-
-        const result = await db.query(`
-            SELECT
-                p.provider_id,
-                p.provider_name,
-                p.provider_type,
-                p.website,
-                p.phone_number,
-                l.city,
-                l.postcode,
-                l.latitude,
-                l.longitude
-
-            FROM providers p
-
-            JOIN locations l
-            ON p.provider_id = l.provider_id;
-        `);
-
-        res.json(result.rows);
-
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).json({
-            error: "Could not retrieve providers"
-        });
-
-    }
-
-}
-
 
 // Convert a user's postcode into latitude and longitude coordinates.
 async function geocodePostcode(req, res) {
@@ -57,11 +10,6 @@ async function geocodePostcode(req, res) {
         return res.status(400).json({
             error: "Postcode is required"
         });
-    }
-
-    if (useMock) {
-        const coordinates = mockData.mockGeocode(postcode);
-        return res.json(coordinates);
     }
 
     try {
@@ -109,11 +57,6 @@ async function getNearbyProviders(req, res) {
         return res.status(400).json({
             error: error.message
         });
-    }
-
-    if (useMock) {
-        const nearbyProviders = mockData.getNearbyProviders(req.query);
-        return res.json(nearbyProviders);
     }
 
     try {
