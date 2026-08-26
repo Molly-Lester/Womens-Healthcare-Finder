@@ -39,8 +39,8 @@ export default function ResultCard({ provider, onViewDetails }) {
                 <div className={classes.infoBox}>
                     <Text className={classes.infoLabel}>Distance</Text>
                     <Text className={classes.infoValue}>
-                        {provider.distance
-                            ? `${provider.distance} mi`
+                        {provider.distance != null && !isNaN(Number(provider.distance))
+                            ? `${Number(provider.distance).toFixed(1)} miles`
                             : "N/A"}
                     </Text>
                 </div>
