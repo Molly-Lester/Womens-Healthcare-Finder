@@ -138,14 +138,3 @@
         display: flex;
     }
 }
-
-/* Ensure the mobile menu wrapper is hidden on larger screens */
-@media (min-width: 769px) {
-    .menuWrap {
-        display: none !important;
-    }
-
-    .links {
-        display: flex !important;
-    }
-}
