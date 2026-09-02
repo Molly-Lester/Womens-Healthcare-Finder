@@ -132,6 +132,27 @@ reducing radius width and input padding */
     }
 }
 
+/* Small-mid phones (Samsung S8+ width 360px): further reduce radius width and tighten input spacing */
+@media (max-width: 360px) {
+    .radiusSelect {
+        flex: 0 0 100px;
+        width: 100px;
+        min-width: 88px;
+        padding: 4px;
+    }
+
+    .input {
+        padding: 6px 6px;
+        font-size: 12.5px;
+    }
+
+    .searchBar {
+        padding: 3px 4px;
+    }
+}
+
+/* responsive dropdown width rules removed */
+
 /* Hover */
 .option:hover {
     border-color: #7c3aed;
