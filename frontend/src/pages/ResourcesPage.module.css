@@ -95,3 +95,38 @@
   }
 }
 
+/* Improve responsiveness on very small screens */
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .imageWrap {
+    padding: 12px;
+  }
+
+  .icon {
+    width: 70%;
+    height: 70%;
+  }
+
+  .banner {
+    min-height: 48px;
+    font-size: 0.95rem;
+    padding: 8px 10px;
+  }
+}
+
+/* Slightly reduce padding for medium screens to avoid overflow */
+@media (max-width: 760px) {
+  .imageWrap {
+    padding: 16px;
+  }
+
+  .icon {
+    width: 80%;
+    height: 80%;
+  }
+}
+
