@@ -138,3 +138,18 @@
         display: flex;
     }
 }
+
+/* Ensure the mobile menu wrapper is hidden on larger screens and full links show */
+@media (min-width: 769px) {
+    .menuWrap {
+        display: none !important;
+    }
+
+    .menuButton {
+        display: none !important;
+    }
+
+    .links {
+        display: flex !important;
+    }
+}
