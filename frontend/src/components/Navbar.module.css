@@ -35,9 +35,77 @@
     align-items: center;
 }
 
+-- Dropdown bar styles for mobile view --
+
+.menuButton {
+    display: none;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuLine {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #000000;
+    margin: 3px 0;
+    border-radius: 2px;
+}
+
+.menuButton {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.menuWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    width: auto;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.open {
+    display: block;
+    pointer-events: auto;
+}
+
+.dropdownMenu {
+    width: 150px;
+    margin: 8px auto 0;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dropdownMenu .link {
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
 .link {
     text-decoration: none;
-    color: #333;
+    color: #000000;
     font-weight: 500;
     transition: all 0.2s;
     padding: 8px 14px;
@@ -45,26 +113,43 @@
 }
 
 .active {
-    background-color: #000000;
-    color: white;
+    background-color: #f5f3ff;
 }
 
-/* Responsive */
+/* Responsive: use hamburger for tablet and smaller to avoid jumbled column layout */
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        flex-direction: row; /* keep horizontal layout */
+        padding: 0.5rem 1rem;
+        align-items: center;
     }
 
     .logo {
         height: 50px;
     }
 
+    /* hide full links and show mobile menu button on tablet and below */
     .links {
-        gap: 1.25rem;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: none;
+    }
+
+    .menuButton {
+        display: flex;
+    }
+}
+
+/* Ensure the mobile menu wrapper is hidden on larger screens and full links show */
+@media (min-width: 769px) {
+    .menuWrap {
+        display: none !important;
+    }
+
+    .menuButton {
+        display: none !important;
+    }
+
+    .links {
+        display: flex !important;
     }
 }

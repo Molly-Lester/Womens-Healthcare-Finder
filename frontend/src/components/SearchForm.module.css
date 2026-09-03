@@ -15,7 +15,7 @@
 
 .searchBar {
     display: flex;
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
     border: 1px solid #e9ecef;
     border-radius: 10px;
@@ -29,7 +29,7 @@
 
 /* left side input */
 .input {
-    flex: 1;
+    flex: 1 1 auto;
     border: none;
     outline: none;
     padding: 10px 12px;
@@ -52,6 +52,9 @@
     border: 1px solid #e9ecef;
     border-radius: 10px;
     background: white;
+    flex: 0 0 140px;
+    width: 140px;
+    min-width: 120px;
 }
 
 .select {
@@ -59,6 +62,93 @@
     outline: none;
     padding: 10px 12px;
     font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Small-screen tweaks: make postcode input take priority and keep radius constrained */
+@media (max-width: 480px) {
+    .searchContainer {
+        gap: 8px;
+        align-items: center;
+    }
+
+    .searchBar {
+        flex: 1 1 0;
+        min-width: 0; /* ensure it can shrink properly inside flex */
+        padding: 4px;
+    }
+
+    .input {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .radiusSelect {
+        /* slightly narrower but still readable */
+        flex: 0 0 140px;
+        width: 140px;
+        padding: 6px;
+        min-width: 120px;
+    }
+
+    .select {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 420px) {
+    .radiusSelect {
+        /* on the smallest screens, give the radius a touch more room for long labels */
+        flex: 0 0 160px;
+        width: 160px;
+        min-width: 140px;
+    }
+
+    .select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Prevent postcode placeholder clipping on mid-size phones by
+reducing radius width and input padding */
+@media (max-width: 400px) {
+    .radiusSelect {
+        flex: 0 0 130px;
+        width: 130px;
+        min-width: 110px;
+        padding: 5px;
+    }
+
+    .input {
+        padding: 7px 8px;
+        font-size: 13px;
+    }
+
+    .searchBar {
+        padding: 4px 6px;
+    }
+}
+
+/* Small-mid phones (Samsung S8+ width 360px): further reduce radius width and tighten input spacing */
+@media (max-width: 360px) {
+    .radiusSelect {
+        flex: 0 0 100px;
+        width: 100px;
+        min-width: 88px;
+        padding: 4px;
+    }
+
+    .input {
+        padding: 6px 6px;
+        font-size: 12.5px;
+    }
+
+    .searchBar {
+        padding: 3px 4px;
+    }
 }
 
 /* Hover */
