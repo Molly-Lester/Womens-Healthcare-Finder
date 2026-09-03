@@ -151,8 +151,6 @@ reducing radius width and input padding */
     }
 }
 
-/* responsive dropdown width rules removed */
-
 /* Hover */
 .option:hover {
     border-color: #7c3aed;
