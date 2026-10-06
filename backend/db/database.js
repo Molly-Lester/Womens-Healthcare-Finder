@@ -4,19 +4,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const db = new Pool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT
+  connectionString: process.env.DATABASE_URL
 });
 
-db.connect()
-    .then(() => {
-        console.log('Connected to PostgreSQL database');
-    })
-    .catch((err) => {
-        console.log('DB connection failed:', err);
-    });
+db.query('SELECT 1')
+  .then(() => console.log('Connected to PostgreSQL database'))
+  .catch((err) => console.error('DB connection failed:', err.message));
 
 module.exports = db;
