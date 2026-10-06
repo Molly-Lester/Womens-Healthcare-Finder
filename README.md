@@ -22,6 +22,7 @@ This project was originally created as part of the Code First Girls Full-Stack D
 
 Users can:
 
+* Browse NHS resouces on various health conditions
 * Search for women's healthcare providers using a UK postcode.
 * Choose the type of healthcare support they're looking for.
 * Filter providers by NHS, private, or all available providers.
@@ -53,8 +54,8 @@ Users can:
 
 ### Database
 
-* PostgreSQL
-* PostGIS
+- Neon (PostgreSQL)
+- PostGIS
 
 ### APIs
 
@@ -63,14 +64,6 @@ Users can:
 ### Testing
 
 * Vitest
-* React Testing Library
-* jsdom
-
-### Development Tools
-
-* ESLint
-* Postman
-* Git & GitHub
 
 ---
 
@@ -83,254 +76,78 @@ Since the original Code First Girls project, I've continued developing the appli
 * Migrating the database from MySQL to PostgreSQL with PostGIS.
 * Expanding the healthcare provider dataset.
 * Introducing Redux for state management.
+* Adding Resources and About pages.
 * Improving the overall project structure, documentation, and maintainability.
+  
+## Getting Started
 
----
+### Prerequisites
 
-## Project Structure
+- Node.js
+- Git (recommended)
+- A Neon PostgreSQL database
+  
+### Installation
 
-```text
-Womens-Health-Provider-Finder/
-│
-├── backend/
-│   ├── controllers/        # Backend logic
-│   ├── db/                 # Database setup
-│   ├── routes/             # API routes
-│   ├── utils/              # Helper functions
-│   ├── package.json
-│   └── server.js
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── features/       # Redux features
-│   │   ├── pages/          # Application pages
-│   │   ├── tests/          # Frontend tests
-│   │   ├── store.js
-│   │   └── main.jsx
-│   │
-│   └── package.json
-│
-└── README.md
-```
+Clone the repository and open the project folder:
 
----
-
-# Getting Started
-
-## Prerequisites
-
-Before running the project, make sure you have the following installed:
-
-* Node.js
-* PostgreSQL
-* Git
-
-This project also uses the PostGIS extension for PostgreSQL to support location-based searching.
-
----
-
-## Installation
-
-Clone the repository:
-
-```bash
 git clone https://github.com/Molly-Lester/Womens-Healthcare-Finder.git
 
 cd Womens-Healthcare-Finder
-```
 
----
-
-## Backend Setup
-
-### 1. Navigate to the backend folder
-
-From the project root, run:
-
-```bash
-cd backend
-```
+### Backend Setup
 
 Install the backend dependencies:
 
-```bash
+cd backend
+
 npm install
-```
 
----
+Create or update backend/.env with your Neon connection string:
 
-## Database Setup
+DATABASE_URL="your-neon-connection-string"
 
-This project uses PostgreSQL with the PostGIS extension to support location-based searching.
+In Neon, click Connect whilst on the correct database then copy the full connection string into DATABASE_URL. Keep .env private and do not commit it to Git.
 
-### 1. Install PostgreSQL
+### Database Setup
 
-If you don't already have PostgreSQL installed, you can download it from:
+The application uses Neon PostgreSQL with PostGIS for location-based searching.
 
-https://www.postgresql.org/download/
+The SQL setup and data file is located at backend/db/Womens-Healthcare-Finder-DB.sql.
 
-During installation, make a note of:
+To set up a new, empty Neon database, open the Neon SQL Editor for that database, paste in the file’s contents, and run the script. It creates the tables, relationships, and clinic data, and enables PostGIS.
 
-* Your PostgreSQL username
-* Your PostgreSQL password
-* The port number (the default is usually `5432`)
+### Frontend Setup
 
----
+Open a separate terminal from the project root and install the frontend dependencies:
 
-### 2. Create a PostgreSQL database
-
-Open PostgreSQL using a database tool such as DBeaver or pgAdmin.
-
-Create a new empty database.
-
-For example:
-
-```text
-clinics_database
-```
-
-The database name should match the value you add to your `.env` file.
-
----
-
-### 3. Enable PostGIS
-
-Connect to your new database and run:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS postgis;
-```
-
-This enables the location features used to calculate distances between users and healthcare providers.
-
----
-
-### 4. Configure environment variables
-
-Inside the `backend` folder, create a file called:
-
-```text
-.env
-```
-
-Add your PostgreSQL connection details:
-
-```env
-DB_HOST=localhost
-DB_USER=your_postgres_username
-DB_PASSWORD=your_password
-DB_NAME=clinics_database
-DB_PORT=5432
-```
-
-Replace the placeholder values with your own PostgreSQL details.
-
----
-
-### 5. Create the database tables
-
-Open the SQL file located at:
-
-```text
-backend/db/databasehealthclinics_postgres.sql
-```
-
-Copy the contents of the file.
-
-In DBeaver (or another PostgreSQL database tool):
-
-1. Open the database you created.
-2. Open a new SQL Editor.
-3. Paste the contents of the SQL file.
-4. Run the script.
-
-This will:
-
-* Create all of the required tables.
-* Set up the database relationships.
-* Add the healthcare provider data used by the application.
-
----
-
-### 6. Start the backend server
-
-From the `backend` folder, run:
-
-```bash
-npm start
-```
-
-If everything has been set up correctly, you should see:
-
-```text
-Server running on http://localhost:3000
-Connected to PostgreSQL database
-```
-
----
-
-## Frontend Setup
-
-Open a new terminal window and navigate to the frontend folder:
-
-```bash
 cd frontend
-```
 
-Install the frontend dependencies:
-
-```bash
 npm install
-```
 
----
+### Running the Application
 
-## Running the Application
+Start the backend in one terminal:
 
-### Start the backend
+cd backend
 
-From the `backend` folder, run:
-
-```bash
 npm start
-```
 
-The backend will be available at:
+The backend runs at http://localhost:3000.
 
-```text
-http://localhost:3000
-```
+Start the frontend in a second terminal:
 
----
+cd frontend
 
-### Start the frontend
-
-From the `frontend` folder, run:
-
-```bash
 npm run dev
-```
 
-The frontend will be available at:
+The frontend runs at http://localhost:5173.
 
-```text
-http://localhost:5173
-```
+### Running Tests
 
----
+Frontend tests use Vitest. From the frontend folder, run:
 
-## Running Tests
-
-Frontend tests are written using Vitest and React Testing Library.
-
-From the `frontend` folder, run:
-
-```bash
 npm test
-```
-
----
 
 ## Future Improvements
 
