@@ -22,7 +22,7 @@ This project was originally created as part of the Code First Girls Full-Stack D
 
 Users can:
 
-* Browse NHS resouces on various health conditions
+* Browse NHS resources on various health conditions
 * Search for women's healthcare providers using a UK postcode.
 * Choose the type of healthcare support they're looking for.
 * Filter providers by NHS, private, or all available providers.
@@ -84,76 +84,93 @@ Since the original Code First Girls project, I've continued developing the appli
 ### Prerequisites
 
 - Node.js
-- Git (recommended)
-- A Neon PostgreSQL database
-  
-### Installation
+- Git
 
-Clone the repository and open the project folder:
+### 1. Clone the repository
 
+```bash
 git clone https://github.com/Molly-Lester/Womens-Healthcare-Finder.git
-
 cd Womens-Healthcare-Finder
+```
 
-### Backend Setup
+If you don’t have Git, download the repository as a ZIP and open the extracted project folder.
 
-Install the backend dependencies:
+### 2. Install frontend dependencies
 
-cd backend
+From the project root:
 
-npm install
-
-Create or update backend/.env with your Neon connection string:
-
-DATABASE_URL="your-neon-connection-string"
-
-In Neon, click Connect whilst on the correct database then copy the full connection string into DATABASE_URL. Keep .env private and do not commit it to Git.
-
-### Database Setup
-
-The application uses Neon PostgreSQL with PostGIS for location-based searching.
-
-The SQL setup and data file is located at backend/db/Womens-Healthcare-Finder-DB.sql.
-
-To set up a new, empty Neon database, open the Neon SQL Editor for that database, paste in the file’s contents, and run the script. It creates the tables, relationships, and clinic data, and enables PostGIS.
-
-### Frontend Setup
-
-Open a separate terminal from the project root and install the frontend dependencies:
-
+```bash
 cd frontend
-
 npm install
+```
 
-### Running the Application
+### 3. Install backend dependencies
+
+Open a separate terminal at the project root:
+
+```bash
+cd backend
+npm install
+```
+
+### 4. Create the backend environment file
+
+In the `backend` folder, create a file named `.env`. Add the Neon connection string in the next step:
+
+```env
+DATABASE_URL="your-neon-connection-string"
+```
+
+Keep `.env` private and do not commit it to Git.
+
+### 5. Create your Neon project
+
+Create your own project in the [Neon Console](https://console.neon.tech/). Use the default branch and database Neon creates for the project.
+
+In the project dashboard, click **Connect** and copy the connection string and replace `your-neon-connection-string` in `backend/.env` with the full string. The backend reads this value from `DATABASE_URL`.
+
+### 6. Set up the database
+
+The SQL setup and data file is located at:
+
+```text
+backend/db/Womens-Healthcare-Finder-DB.sql
+```
+
+For a new, empty database, open the Neon SQL Editor for the correct database, paste in the contents of the SQL file and run the script. It creates the tables and relationships, enables PostGIS, and adds the clinic data.
+
+### 7. Run the application
 
 Start the backend in one terminal:
 
+```bash
 cd backend
-
 npm start
+```
 
-The backend runs at http://localhost:3000.
+The backend runs at [http://localhost:3000](http://localhost:3000).
 
 Start the frontend in a second terminal:
 
+```bash
 cd frontend
-
 npm run dev
+```
 
-The frontend runs at http://localhost:5173.
+The frontend runs at [http://localhost:5173](http://localhost:5173).
 
 ### Running Tests
 
-Frontend tests use Vitest. From the frontend folder, run:
+Frontend tests use Vitest. From the `frontend` folder, run:
 
+```bash
 npm test
+```
 
 ## Future Improvements
 
-There are still plenty of ideas I'd like to explore as I continue developing the project:
+There are still some ideas I'd like to explore as I continue developing the project:
 
-* Add a resources page with trusted information on women's health conditions.
 * Increase test coverage for different search scenarios and API responses.
 * Continue refining the user interface and accessibility.
 
