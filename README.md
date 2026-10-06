@@ -22,6 +22,7 @@ This project was originally created as part of the Code First Girls Full-Stack D
 
 Users can:
 
+* Browse NHS resources on various health conditions
 * Search for women's healthcare providers using a UK postcode.
 * Choose the type of healthcare support they're looking for.
 * Filter providers by NHS, private, or all available providers.
@@ -53,8 +54,8 @@ Users can:
 
 ### Database
 
-* PostgreSQL
-* PostGIS
+- Neon (PostgreSQL)
+- PostGIS
 
 ### APIs
 
@@ -63,14 +64,6 @@ Users can:
 ### Testing
 
 * Vitest
-* React Testing Library
-* jsdom
-
-### Development Tools
-
-* ESLint
-* Postman
-* Git & GitHub
 
 ---
 
@@ -83,260 +76,101 @@ Since the original Code First Girls project, I've continued developing the appli
 * Migrating the database from MySQL to PostgreSQL with PostGIS.
 * Expanding the healthcare provider dataset.
 * Introducing Redux for state management.
+* Adding Resources and About pages.
 * Improving the overall project structure, documentation, and maintainability.
+  
+## Getting Started
 
----
+### Prerequisites
 
-## Project Structure
+- Node.js
+- Git
 
-```text
-Womens-Health-Provider-Finder/
-│
-├── backend/
-│   ├── controllers/        # Backend logic
-│   ├── db/                 # Database setup
-│   ├── routes/             # API routes
-│   ├── utils/              # Helper functions
-│   ├── package.json
-│   └── server.js
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── features/       # Redux features
-│   │   ├── pages/          # Application pages
-│   │   ├── tests/          # Frontend tests
-│   │   ├── store.js
-│   │   └── main.jsx
-│   │
-│   └── package.json
-│
-└── README.md
-```
-
----
-
-# Getting Started
-
-## Prerequisites
-
-Before running the project, make sure you have the following installed:
-
-* Node.js
-* PostgreSQL
-* Git
-
-This project also uses the PostGIS extension for PostgreSQL to support location-based searching.
-
----
-
-## Installation
-
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Molly-Lester/Womens-Healthcare-Finder.git
-
 cd Womens-Healthcare-Finder
 ```
 
----
+If you don’t have Git, download the repository as a ZIP and open the extracted project folder.
 
-## Backend Setup
+### 2. Install frontend dependencies
 
-### 1. Navigate to the backend folder
-
-From the project root, run:
-
-```bash
-cd backend
-```
-
-Install the backend dependencies:
-
-```bash
-npm install
-```
-
----
-
-## Database Setup
-
-This project uses PostgreSQL with the PostGIS extension to support location-based searching.
-
-### 1. Install PostgreSQL
-
-If you don't already have PostgreSQL installed, you can download it from:
-
-https://www.postgresql.org/download/
-
-During installation, make a note of:
-
-* Your PostgreSQL username
-* Your PostgreSQL password
-* The port number (the default is usually `5432`)
-
----
-
-### 2. Create a PostgreSQL database
-
-Open PostgreSQL using a database tool such as DBeaver or pgAdmin.
-
-Create a new empty database.
-
-For example:
-
-```text
-clinics_database
-```
-
-The database name should match the value you add to your `.env` file.
-
----
-
-### 3. Enable PostGIS
-
-Connect to your new database and run:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS postgis;
-```
-
-This enables the location features used to calculate distances between users and healthcare providers.
-
----
-
-### 4. Configure environment variables
-
-Inside the `backend` folder, create a file called:
-
-```text
-.env
-```
-
-Add your PostgreSQL connection details:
-
-```env
-DB_HOST=localhost
-DB_USER=your_postgres_username
-DB_PASSWORD=your_password
-DB_NAME=clinics_database
-DB_PORT=5432
-```
-
-Replace the placeholder values with your own PostgreSQL details.
-
----
-
-### 5. Create the database tables
-
-Open the SQL file located at:
-
-```text
-backend/db/databasehealthclinics_postgres.sql
-```
-
-Copy the contents of the file.
-
-In DBeaver (or another PostgreSQL database tool):
-
-1. Open the database you created.
-2. Open a new SQL Editor.
-3. Paste the contents of the SQL file.
-4. Run the script.
-
-This will:
-
-* Create all of the required tables.
-* Set up the database relationships.
-* Add the healthcare provider data used by the application.
-
----
-
-### 6. Start the backend server
-
-From the `backend` folder, run:
-
-```bash
-npm start
-```
-
-If everything has been set up correctly, you should see:
-
-```text
-Server running on http://localhost:3000
-Connected to PostgreSQL database
-```
-
----
-
-## Frontend Setup
-
-Open a new terminal window and navigate to the frontend folder:
+From the project root:
 
 ```bash
 cd frontend
-```
-
-Install the frontend dependencies:
-
-```bash
 npm install
 ```
 
----
+### 3. Install backend dependencies
 
-## Running the Application
-
-### Start the backend
-
-From the `backend` folder, run:
+Open a separate terminal at the project root:
 
 ```bash
+cd backend
+npm install
+```
+
+### 4. Create the backend environment file
+
+In the `backend` folder, create a file named `.env`. Add the Neon connection string in the next step:
+
+```env
+DATABASE_URL="your-neon-connection-string"
+```
+
+Keep `.env` private and do not commit it to Git.
+
+### 5. Create your Neon project
+
+Create your own project in the [Neon Console](https://console.neon.tech/). Use the default branch and database Neon creates for the project.
+
+In the project dashboard, click **Connect** and copy the connection string and replace `your-neon-connection-string` in `backend/.env` with the full string. The backend reads this value from `DATABASE_URL`.
+
+### 6. Set up the database
+
+The SQL setup and data file is located at:
+
+```text
+backend/db/Womens-Healthcare-Finder-DB.sql
+```
+
+For a new, empty database, open the Neon SQL Editor for the correct database, paste in the contents of the SQL file and run the script. It creates the tables and relationships, enables PostGIS, and adds the clinic data.
+
+### 7. Run the application
+
+Start the backend in one terminal:
+
+```bash
+cd backend
 npm start
 ```
 
-The backend will be available at:
+The backend runs at [http://localhost:3000](http://localhost:3000).
 
-```text
-http://localhost:3000
-```
-
----
-
-### Start the frontend
-
-From the `frontend` folder, run:
+Start the frontend in a second terminal:
 
 ```bash
+cd frontend
 npm run dev
 ```
 
-The frontend will be available at:
+The frontend runs at [http://localhost:5173](http://localhost:5173).
 
-```text
-http://localhost:5173
-```
+### Running Tests
 
----
-
-## Running Tests
-
-Frontend tests are written using Vitest and React Testing Library.
-
-From the `frontend` folder, run:
+Frontend tests use Vitest. From the `frontend` folder, run:
 
 ```bash
 npm test
 ```
 
----
-
 ## Future Improvements
 
-There are still plenty of ideas I'd like to explore as I continue developing the project:
+There are still some ideas I'd like to explore as I continue developing the project:
 
-* Add a resources page with trusted information on women's health conditions.
 * Increase test coverage for different search scenarios and API responses.
 * Continue refining the user interface and accessibility.
 
