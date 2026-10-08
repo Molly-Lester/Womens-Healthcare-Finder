@@ -7,6 +7,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import ResultsPage from "./pages/ResultsPage";
 import ResourcesPage from "./pages/ResourcesPage";
+import AboutPage from "./pages/AboutPage";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/results" element={<ResultsPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </main>
     </>

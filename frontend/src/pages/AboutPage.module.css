@@ -1,0 +1,35 @@
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 70px 48px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-family: 'Poppins', system-ui, sans-serif;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #111827;
+}
+
+.header2 {
+  max-width: 640px;
+  margin: 12px auto 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: #111827;
+  margin-bottom: 60px;
+}
+
+.paragraph {
+  margin: 24px 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #111827;
+}
