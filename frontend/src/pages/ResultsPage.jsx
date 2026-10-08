@@ -14,8 +14,6 @@ export default function ResultsPage() {
     const filters = useSelector((state) => state.search.filters);
     const searchQuery = useSelector((state) => state.search.searchQuery);
 
-    // Reset option removed; users should use "New Search" to start over.
-
     const handleNewSearch = () => {
         dispatch(clearResults());
         dispatch(setSearchQuery({
