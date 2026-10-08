@@ -1,10 +1,9 @@
-import { Select, Text, Checkbox, Divider, Button } from "@mantine/core";
+import { Select, Text, Divider, Button } from "@mantine/core";
 import classes from "./FilterSidebar.module.css";
 
 export default function FilterSidebar({
   distance,
   setDistance,
-  onReset,
   onApplyFilters,
 }) {
   return (
@@ -47,16 +46,6 @@ export default function FilterSidebar({
         onClick={onApplyFilters}
       >
         Apply Filters
-      </Button>
-
-      {/* Reset Button */}
-      <Button
-        variant="outline"
-        fullWidth
-        className={classes.resetButton}
-        onClick={onReset}
-      >
-        Reset Filters
       </Button>
     </aside>
   );

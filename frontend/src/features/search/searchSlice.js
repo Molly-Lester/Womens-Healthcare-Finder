@@ -32,19 +32,6 @@ const searchSlice = createSlice({
         setFilters: (state, action) => {
             state.filters = { ...state.filters, ...action.payload };
         },
-        resetFilters: (state) => {
-            state.filters = {
-                fundingType: "all",
-                distance: "5",
-                services: [],
-            };
-            state.searchQuery = {
-                postcode: "",
-                category: null,
-                providerType: "all",
-                distance: "5",
-            };
-        },
         setSearchQuery: (state, action) => {
             state.searchQuery = { ...state.searchQuery, ...action.payload };
         },
@@ -52,6 +39,6 @@ const searchSlice = createSlice({
 
 })
 
-export const { setLoading, setResults, clearResults, setFilters, resetFilters, setSearchQuery } = searchSlice.actions;
+export const { setLoading, setResults, clearResults, setFilters, setSearchQuery } = searchSlice.actions;
 
 export default searchSlice.reducer;

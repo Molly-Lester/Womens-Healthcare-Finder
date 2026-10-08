@@ -65,16 +65,3 @@
   color: #495057;
 }
 
-.resetButton {
-  margin-top: 8px;
-  border-color: #d6d9df;
-  color: #495057;
-  font-size: 14px;
-  font-weight: 500;
-  height: 40px;
-  border-radius: 8px;
-}
-
-.resetButton:hover {
-  background-color: #f8fbff;
-}
