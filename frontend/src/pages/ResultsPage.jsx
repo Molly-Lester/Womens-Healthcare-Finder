@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { clearResults, resetFilters, setFilters, setSearchQuery, setLoading } from "../features/search/searchSlice";
+import { clearResults, setFilters, setSearchQuery, setLoading, setResults } from "../features/search/searchSlice";
 import FilterSidebar from "../components/FilterSidebar";
 import ResultCard from "../components/ResultCard";
 import Results from "../components/Results";
@@ -13,10 +13,6 @@ export default function ResultsPage() {
     const searchData = useSelector((state) => state.search.results);
     const filters = useSelector((state) => state.search.filters);
     const searchQuery = useSelector((state) => state.search.searchQuery);
-
-    const handleResetFilters = () => {
-        dispatch(resetFilters());
-    };
 
     const handleNewSearch = () => {
         dispatch(clearResults());
@@ -95,7 +91,6 @@ export default function ResultsPage() {
                     <FilterSidebar
                         distance={filters.distance}
                         setDistance={(value) => dispatch(setFilters({ distance: value }))}
-                        onReset={handleResetFilters}
                         onApplyFilters={handleApplyFilters}
                     />
 
@@ -105,7 +100,31 @@ export default function ResultsPage() {
                             <ResultCard
                                 key={provider.provider_id}
                                 provider={provider}
-                                onViewDetails={() => console.log("View details for", provider.provider_id)}
+                                onViewDetails={() => {
+                                    const website = provider.website && provider.website.trim();
+                                    if (!website) {
+                                        showNotification({
+                                            title: "Website not available",
+                                            message: "This provider does not have a website listed.",
+                                            color: "red",
+                                        });
+                                        return;
+                                    }
+
+                                    const normalized = website.startsWith("http://") || website.startsWith("https://")
+                                        ? website
+                                        : `http://${website}`;
+
+                                    try {
+                                        window.open(normalized, "_blank", "noopener,noreferrer");
+                                    } catch (err) {
+                                        showNotification({
+                                            title: "Could not open website",
+                                            message: "Unable to open the provider website.",
+                                            color: "red",
+                                        });
+                                    }
+                                }}
                             />
                         ))}
 

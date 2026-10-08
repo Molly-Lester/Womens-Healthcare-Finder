@@ -5,7 +5,7 @@ import { showNotification } from '@mantine/notifications';
 import CategoryCards from "./CategoryCards";
 import searchFormClasses from './SearchForm.module.css';
 import { useDispatch } from "react-redux";
-import { setLoading, setResults, setSearchQuery } from "../features/search/searchSlice";
+import { setLoading, setResults, setSearchQuery, setFilters } from "../features/search/searchSlice";
 
 export default function SearchForm() {
     const navigate = useNavigate();
@@ -82,6 +82,8 @@ export default function SearchForm() {
                 providerType,
                 distance: radius,
             }));
+            // initialize the filter sidebar to the radius chosen in the search
+            dispatch(setFilters({ distance: radius }));
             navigate("/results");
 
         } catch (err) {
